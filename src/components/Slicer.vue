@@ -15,7 +15,7 @@ import CheckedList from "./CheckedList";
 import {mapMutations, mapState} from "vuex";
 
 export default {
-  name: "Slicer-component",
+  name: "Slicer",
   components: {
     CheckedList
   },

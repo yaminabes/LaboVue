@@ -41,7 +41,7 @@ import {mapState, mapMutations} from 'vuex'
 import CheckedList from "./CheckedList";
 
 export default {
-  name: 'Basket-component',
+  name: 'Basket',
   components: {
     CheckedList,
   },

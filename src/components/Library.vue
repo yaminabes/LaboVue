@@ -12,7 +12,7 @@ import Articles from "@/components/Articles";
 import Basket from "@/components/Basket";
 
   export default {
-    name: 'Library-component',
+    name: 'Library',
     components: {
       Articles,
       Basket,

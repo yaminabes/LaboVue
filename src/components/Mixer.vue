@@ -18,7 +18,8 @@ import CheckedList from "./CheckedList";
 import {mapMutations, mapState} from "vuex";
 
 export default {
-  name: "Mixer-component",
+  name: "Mixer",
+  props: ['mode'],
   components: {
     CheckedList,
   },

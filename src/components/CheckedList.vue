@@ -28,7 +28,7 @@
 <script>
 
   export default {
-    name: 'CheckedList-component',
+    name: 'CheckedList',
     props: ['entries','checked', 'showChecked', 'showEntryButton', 'showMainButton', 'fields'],
     data : () => {
       return {

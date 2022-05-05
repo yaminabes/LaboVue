@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'Home-component'
+  name: 'Home'
 }
 </script>
 

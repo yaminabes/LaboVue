@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-container>
-      <NavBar :titles="titles"/>
+      <NavBar v-bind:titles="titles"></NavBar>
       <router-view name="locCentral"></router-view>
     </v-container>
   </div>

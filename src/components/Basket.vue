@@ -31,7 +31,7 @@
         </CheckedList>
       </tr>
     </table>
-    <button :disabled="basket.length === 0" @click="sendBasketToLab">Send basket to Lab</button>
+    <v-btn :disabled="basket.length === 0" @click="sendBasketToLab">Send basket to Lab</v-btn>
   </div>
 </template>
 

@@ -2,8 +2,8 @@
   <div>
     <slot name="title"></slot>
     <hr />
-    <button @click="currentOp = 0"><slot name="button1">button 1</slot></button>
-    <button @click="currentOp = 1"><slot name="button2">button 2</slot></button>
+    <v-btn @click="currentOp = 0"><slot name="button1">button 1</slot></v-btn>
+    <v-btn @click="currentOp = 1"><slot name="button2">button 2</slot></v-btn>
     <hr />
     <div v-if="currentOp === 0">
       <Slicer />

@@ -8,20 +8,20 @@
             <slot name="entry" v-bind:item="entry" >
               {{entry}}
             </slot>
-            <button v-if="showEntryButton" @click="$emit('entry-clicked', index)">
+            <v-btn v-if="showEntryButton" @click="$emit('entry-clicked', index)">
               <slot name="entryButton">
                 Entry Button
               </slot>
-            </button>
+            </v-btn>
           </p>
         </td>
       </tr>
     </table>
-    <button v-if="showMainButton" @click="$emit('list-clicked'), updateChecked()">
+    <v-btn v-if="showMainButton" @click="$emit('list-clicked'), updateChecked()">
       <slot name="mainButton">
         Main button
       </slot>
-    </button>
+    </v-btn>
   </div>
 </template>
 

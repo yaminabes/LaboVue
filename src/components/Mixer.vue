@@ -3,13 +3,13 @@
     <h1>Mixer</h1>
     <CheckedList :fields="['name','code']" :entries="parts" @chosen-changed="selectedParts = $event" />
     <hr/>
-    <button :disabled="selectedParts.length === 0" @click="mixSelected">Mix</button>
-    <button :disabled="parts.length === 0" @click="wipeParts">Wipe</button>
+    <v-btn :disabled="selectedParts.length === 0" @click="mixSelected">Mix</v-btn>
+    <v-btn :disabled="parts.length === 0" @click="wipeParts">Wipe</v-btn>
     <hr />
     <CheckedList :fields="['name','code']" :entries="newViruses" @chosen-changed="selectedNew = $event" />
-    <button :disabled="selectedNew.length === 0" @click="sendToLibrary">Send to library</button>
-    <button :disabled="selectedNew.length === 0" @click="sendToLab">Send to lab</button>
-    <button :disabled="newViruses.length === 0" @click="removeViruses">Remove all</button>
+    <v-btn :disabled="selectedNew.length === 0" @click="sendToLibrary">Send to library</v-btn>
+    <v-btn :disabled="selectedNew.length === 0" @click="sendToLab">Send to lab</v-btn>
+    <v-btn :disabled="newViruses.length === 0" @click="removeViruses">Remove all</v-btn>
   </div>
 </template>
 

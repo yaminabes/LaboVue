@@ -3,9 +3,9 @@
     <h1>Slicer</h1>
     <CheckedList :fields="['name','code']" :entries="samples" @chosen-changed="selected = $event" />
     <hr/>
-    <button :disabled="selected.length === 0" @click="mutateSelected">Mutate</button>
+    <v-btn :disabled="selected.length === 0" @click="mutateSelected">Mutate</v-btn>
     <input :disabled="selected.length === 0" :value="nbMutations" @change="checkNbMutations($event.target.value)">
-    <button :disabled="selected.length === 0" @click="cutSelected">Cut</button>
+    <v-btn :disabled="selected.length === 0" @click="cutSelected">Cut</v-btn>
     <input :disabled="selected.length === 0" :value="cutSize" @change="checkCutSize($event.target.value)">
   </div>
 </template>

@@ -18,15 +18,32 @@ export default new Vuex.Store({
       state.collec.push(virus);
     },
     sendToBasket(state, index) {
-      // clone : create a new virus objet from the original one in collec
-      let v = state.collec[index]
-      state.basket.push(new Virus(v._id, v.name, v.code));
+      // remove index from article
+      for(let i=0; i<state.articles.length; i++){
+        if(state.articles[i] === index){
+          state.articles.splice(i,1)
+        }
+      }
+      //add index in basket
+      state.basket.push(index);
+      //sort basket
+      state.basket.sort()
     },
     removeFromBasket(state, index) {
-      state.basket.splice(index,1)
+      let idx = state.basket.findIndex(i => i === index)
+      state.articles.push(index)
+      state.articles.sort()
+      state.basket.splice(idx,1) 
+    },
+    emptyAllBasket(state) {
+      for(let i=0; i<state.basket.length; i++){
+        state.articles.push(state.basket[i])
+      }
+      state.articles.sort()
+      state.basket.splice(0,state.basket.length) 
     },
     sendBasketToLab(state) {
-      state.basket.forEach(v => state.samples.push(v))
+      state.basket.forEach(v => state.samples.push(new Virus(state.collec[v]._id, state.collec[v].name, state.collec[v].code)))
       state.basket.splice(0,state.basket.length)
     },
     sendNewVirusToLab(state, index) {
@@ -78,15 +95,14 @@ export default new Vuex.Store({
       // create a new virus with an id/name created from the first part
       let v = new Virus(state.parts[0]._id + 2000, state.parts[0].name + "v" + state.parts.length, code);
       state.newViruses.push(v);
-      // problem: removing used parts from state.parts
-      // if we remove one, indexes will be shifted, and further removed parts won't be the good one.
-      // => params must be ordered by decreasing indexes. Then it can be crossed to remove parts
       params.sort((a, b) => b - a);
       params.forEach(idx => state.parts.splice(idx, 1))
     },
     initStock(state) {
-      for(let i = 0; i<state.collec.length-2; i++){
-        state.articles.push(i)
+      if(state.articles.length === 0){
+        for(let i = 0; i<state.collec.length; i++){
+          state.articles.push(i)
+        }
       }
     }
   },

@@ -1,11 +1,27 @@
 <template>
   <div>
-    <CheckedList :fields="['name','code']" :entries="articlesFunction" @chosen-changed="selected = $event">
-      <template v-slot:entry="slotProps">
-        {{ slotProps.item }}
-      </template>
+    <CheckedList 
+      :fields="['name','code']" 
+      :showChecked="true" 
+      :showEntryButton="true" 
+      :showMainButton="true" 
+      :entries="articlesFunction" 
+      @entry-clicked="sendOneToBasket($event)"
+      @list-clicked="sendSelectedToBasket($event)"
+      @checked-changed="updateSelected($event)"
+      :checked="false"
+      >
+      
+        <template v-slot:entry="slotProps">
+          {{ slotProps.item }}
+        </template>
+        <template v-slot:entryButton>
+          To Basket
+        </template>
+        <template v-slot:mainButton>
+          Send selected to Basket
+        </template>
     </CheckedList>
-    <button :disabled="selected.length===0" @click="sendSelectedToBasket">To basket</button>
   </div>
 </template>
 
@@ -28,36 +44,40 @@ export default {
   computed: {
     ...mapState(['articles','collec']),
     articlesFunction() {
-      this.articles.filter(v => {
-        let idx = this.removed.findIndex(r => r === v)
-        return idx === -1
-      })
     let articlesDisplay = []
     for(let i=0; i<this.articles.length; i++){
       articlesDisplay.push(this.collec[this.articles[i]]);
     }
-      return articlesDisplay
-      
+    return articlesDisplay      
+  },
+    updateChecked(){
+      if(this.selected.length === 0){
+        return false
+      }
+      return true
     }
   },
   methods: {
     ...mapMutations(['sendToBasket', 'initStock']),
     sendSelectedToBasket() {
-      // pb : if we move articles one by one in basket, and put them in removed
-      // articles is recomputed as soon as removed changes. Thus, indexes in articles
-      // become shifted compared to selected => must begin by the end of articles and thus
-      // reorder selected by decreasing indexes
-      this.selected.sort((a,b) => b-a)
-      this.selected.forEach(idx => {
-        // idx is an index in articles, must retrieve the index in articles (=> see remarks in the solution article on cours-info)
-        let articlesIdx = this.articles.findIndex(v => v === this.articles[idx])
-        // call the mutation with the index in articles
-        this.sendToBasket(articlesIdx)
-        // send an event to Library so that it puts the virus in the one that must be removed from the list.
-        this.$emit('add-removed',this.articles[idx])
-      })
+      console.log(this.selected)
+      for(let i = 0; i < this.selected.length; i++){
+        this.sendToBasket(this.selected[i])
+      }
       this.selected.splice(0,this.selected.length)
     },
+    sendOneToBasket(idx){
+      this.sendToBasket(this.articles[idx])
+    },
+    updateSelected(idx){
+      for(let i = 0; i<idx.length; i++){
+        if(!this.selected.includes(this.articles[idx[i]])){
+          this.selected.push(this.articles[idx[i]])
+        }
+      }
+      console.log(idx)
+    },
+
   },
   mounted() {
     this.initStock()

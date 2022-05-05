@@ -3,11 +3,32 @@
     <h2>In my basket :</h2>
     <table >
       <tr><td>Name</td><td>Code</td><td>% Mortality</td></tr>
-      <tr v-for="(v,index) in basket" :key="index">
-        <td>{{v.name}}</td>
-        <td>{{v.code}}</td>
-        <td>{{v.mortalite}}</td>
-        <td><button @click="remove(index)">remove</button></td>
+      <tr>
+        <CheckedList :fields="['name','code']" 
+        :showEntryButton="true" 
+        :showMainButton="true" 
+        :entries="basketFunction"
+        @entry-clicked="remove($event)"
+        @list-clicked="emptyAllBasket"
+        >
+          <template v-slot:entry="slotProps">
+            <td>
+            {{ slotProps.item.name }}
+            </td>
+            <td>
+            {{ slotProps.item.code }}
+            </td>
+            <td>
+            {{ slotProps.item.mortalite }}
+            </td>
+          </template>
+          <template v-slot:entryButton>
+            Remove
+          </template>
+          <template v-slot:mainButton>
+            Remove all
+          </template>
+        </CheckedList>
       </tr>
     </table>
     <button :disabled="basket.length === 0" @click="sendBasketToLab">Send basket to Lab</button>
@@ -17,35 +38,35 @@
 <script>
 
 import {mapState, mapMutations} from 'vuex'
+import CheckedList from "./CheckedList";
 
 export default {
   name: 'Basket-component',
+  components: {
+    CheckedList,
+  },
   props: ['operation','name','code'],
   data : () => {
     return {
     }
   },
   computed: {
-    ...mapState(['basket','collec'])
+    ...mapState(['basket','collec']),
+    basketFunction() {
+      let basketDisplay = []
+      for(let i=0; i<this.basket.length; i++){
+        basketDisplay.push(this.collec[this.basket[i]]);
+      }
+      return basketDisplay      
+    }
   },
   methods: {
-    ...mapMutations(['sendBasketToLab','removeFromBasket']),
+    ...mapMutations(['sendBasketToLab','removeFromBasket','emptyAllBasket']),
     remove(index) {
-      // remove an item from the basket using the mutation
-      // and send an event to Library so that it modifies the list of removed indexes
-      this.$emit('remove-removed', this.basket[index])
-      this.removeFromBasket(index)
-
+      this.removeFromBasket(this.basket[index])
     },
-    emptyBasket() {
-      // NB: this method should be a mutation in the store !
-
-      // remove item 0 in basket, as many times there are viruses in the basket.
-      // CAUTION : do not use directly i<this.basket.length since it will effectively change
-      let size = this.basket.length
-      for(let i=0;i<size;i++) {
-        this.removeFromBasket(0)
-      }
+    emptyBasket() {      
+      this.emptyAllBasket()      
     },
 
   }

@@ -9,7 +9,6 @@
       @entry-clicked="sendOneToBasket($event)"
       @list-clicked="sendSelectedToBasket($event)"
       @checked-changed="updateSelected($event)"
-      :checked="false"
       >
       
         <template v-slot:entry="slotProps">

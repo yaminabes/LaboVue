@@ -52,7 +52,10 @@ export default new Vuex.Store({
     },
     sendNewVirusToLibrary(state, index) {
       state.collec.push(state.newViruses[index])
+      state.articles.push(state.collec.length-1)
       state.newViruses.splice(index,1)
+      console.log('articles  '+state.articles)
+      console.log('collec  '+state.collec)
     },
     removeNewVirus(state, index) {
       state.newViruses.splice(index,1)
@@ -78,7 +81,9 @@ export default new Vuex.Store({
       virus.updateCaracs();
     },
     cut(state, params) {
+      console.log('sample ' +state.samples)
       let idx = params.index
+      console.log('idx ' +idx)
       let virus = state.samples[idx];
       for (let i = 0; i < virus.code.length; i += params.size) {
         let v = new Virus(virus._id + 1000 + i, virus.name + "part" + i, virus.code.substring(i, i + params.size));
@@ -88,6 +93,7 @@ export default new Vuex.Store({
       state.samples.splice(idx, 1)
     },
     assemble(state, params) {
+      console.log(params)
       let code = ""
       params.forEach(idx => {
         code += state.parts[idx].code;

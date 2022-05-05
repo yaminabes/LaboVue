@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Slicer</h1>
-    <CheckedList :fields="['name','code']" :entries="samples" @chosen-changed="selected = $event" />
+    <CheckedList :fields="['name','code']" :entries="samples" :showChecked="true" @checked-changed="updateSelected($event)" />
     <hr/>
     <v-btn :disabled="selected.length === 0" @click="mutateSelected">Mutate</v-btn>
     <input :disabled="selected.length === 0" :value="nbMutations" @change="checkNbMutations($event.target.value)">
@@ -25,7 +25,7 @@ export default {
     cutSize : 3,
   }),
   computed: {
-    ...mapState(['samples'])
+    ...mapState(['samples', 'collec'])
   },
   methods: {
     ...mapMutations(['mutate','cut']),
@@ -50,20 +50,30 @@ export default {
       }
     },
     mutateSelected() {
-      this.selected.forEach(idx => {
-        let params = {index: idx, nb: this.nbMutations}
+      for(let i=0; i<this.selected.length; i++){
+        let params = {index: i, nb: this.nbMutations}        
         this.mutate(params)
-      })
+      }
+      
     },
     cutSelected() {
       // pb: cut() will remove the virus from samples, so it will lead to a shift with selected.
       // reorder selected
-      this.selected.sort((a,b) => b-a)
-      this.selected.forEach(idx => {
-        let params = {index: idx, size: this.cutSize}
+      let size = this.selected.length
+      //this.selected.sort((a,b) => b-a)
+      for(let i=size-1; i>=0; i--){
+        let params = {index: i, nb: this.cutSize}        
         this.cut(params)
-      })
-    }
+      }
+    },
+    updateSelected(idx){
+      
+      for(let i = 0; i<idx.length; i++){
+        if(!this.selected.includes(this.samples[idx[i]])){
+          this.selected.push(this.samples[idx[i]])
+        }
+      }
+    },
   }
 }
 </script>

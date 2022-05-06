@@ -44,6 +44,7 @@ export default {
   data: () => ({
     selected: [], // the current selected indexes, in the checked list
     headers: [
+          //{ text: 'Select'},
           {
             text: 'Name',
             align: 'start',

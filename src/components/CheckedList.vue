@@ -24,6 +24,7 @@
       :single-select="singleSelect"
       :search="search"
       :custom-filter="filterByName"
+      :show-select="showChecked"
       item-key="name"
       class="elevation-1"
     >
@@ -32,6 +33,7 @@
           v-model="search"
           label="Search by name"
           class="mx-4"
+          outlined
         ></v-text-field>
 
       </template>

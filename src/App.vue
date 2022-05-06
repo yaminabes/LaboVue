@@ -1,15 +1,27 @@
 <template>
   <div id="app">
+    <v-row align="center" justify="center">
     <v-container>
-      <NavBar v-bind:titles="titles"></NavBar>
-      <router-view name="locCentral"></router-view>
+      <v-app-bar 
+      dark
+      app
+      >
+        <NavBar v-bind:titles="titles"></NavBar>
+      </v-app-bar>
+      <v-card flat 
+        color="primary"
+        class="padding-top-bottom-20"
+      > 
+        <router-view name="locCentral"></router-view>
+      </v-card>
     </v-container>
+    </v-row>
+    
   </div>
 </template>
 
 <script>
 import NavBar from './components/NavBar.vue'
-import {mapState} from 'vuex'
 
 export default {
   name: 'App',
@@ -21,9 +33,6 @@ export default {
         { text: "Library", color:"pink", path: "/library", icon: "mdi-arrow-left"},
       ],
     }
-  },
-  computed: {
-    ...mapState(['collec']),
   },
   components: {
     NavBar,

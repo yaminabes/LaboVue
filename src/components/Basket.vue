@@ -8,26 +8,22 @@
         :showEntryButton="true" 
         :showMainButton="true" 
         :entries="basketFunction"
+        :headers="headers"
         @entry-clicked="remove($event)"
         @list-clicked="emptyAllBasket"
         >
-          <template v-slot:entry="slotProps">
-            <td>
-            {{ slotProps.item.name }}
-            </td>
-            <td>
-            {{ slotProps.item.code }}
-            </td>
-            <td>
-            {{ slotProps.item.mortalite }}
-            </td>
-          </template>
-          <template v-slot:entryButton>
-            Remove
-          </template>
-          <template v-slot:mainButton>
-            Remove all
-          </template>
+          <template v-slot:entry="slotProps">          
+          <td>{{slotProps.item.name}}</td>
+          <td>{{slotProps.item.code}}</td>
+          <td>{{slotProps.item.mortalite}}</td>
+          <td>{{slotProps.item.temperature}}</td>
+        </template>
+        <template v-slot:entryButton>
+          To Basket
+        </template>
+        <template v-slot:mainButton>
+          Send selected to Basket
+        </template>
         </CheckedList>
       </tr>
     </table>
@@ -48,6 +44,19 @@ export default {
   props: ['operation','name','code'],
   data : () => {
     return {
+       headers: [
+          //{ text: 'Select'},
+          {
+            text: 'Name',
+            align: 'start',
+            value: 'name',
+          },
+          // this replaces the scoped-slot of the entries as we can choose to give the v-dataTable what informations we need
+          { text: 'Code', value: 'code' },
+          { text: 'Mortality (%)', value: 'mortalite'},
+          { text: 'Temperature', value: 'temperature' },
+          { text: 'action', value: '' },
+        ]
     }
   },
   computed: {

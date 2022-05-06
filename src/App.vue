@@ -23,14 +23,15 @@
 <script>
 import NavBar from './components/NavBar.vue'
 
+
 export default {
   name: 'App',
   data : () => {
     return {
       titles : [
         { text: "Home", color:"red", path: "/home", icon: "mdi-home" },
-        { text: "Labo", color:"grey", path: "/labo", icon: "mdi-cloud-upload" },
-        { text: "Library", color:"pink", path: "/library", icon: "mdi-arrow-left"},
+        { text: "Labo", color:"grey", path: "/labo", icon: "mdi-flask" },
+        { text: "Library", color:"pink", path: "/library", icon: "mdi-file-search"},
       ],
     }
   },

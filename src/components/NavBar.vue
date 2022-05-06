@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <v-btn v-for="(t,index) in titles" :key="index"  @click="$router.push({path: t.path})">
+      <v-btn v-for="(t,index) in titles" :key="index" :style="{color : t.color}" @click="$router.push({path: t.path})">
       {{t.text}}
       </v-btn>
     </v-container>

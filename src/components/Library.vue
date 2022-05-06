@@ -1,6 +1,5 @@
 <template>
   <div>
-    <slot name="title"></slot>
     <Articles :removed="removed" @add-removed="removed.push($event)"/>
     <Basket @remove-removed="removeFromRemoved"/>
   </div>

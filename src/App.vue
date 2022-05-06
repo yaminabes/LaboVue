@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <v-app>
     <v-row align="center" justify="center">
     <v-container>
       <v-app-bar 
@@ -16,7 +17,7 @@
       </v-card>
     </v-container>
     </v-row>
-    
+    </v-app>
   </div>
 </template>
 

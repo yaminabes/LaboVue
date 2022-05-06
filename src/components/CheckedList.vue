@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app>
+    
     <!-- <table>
       <tr v-for="(entry,index) in entries" :key="index">
         <td>
@@ -75,7 +75,6 @@
       </template>
       
     </v-data-table>
-  </v-app>
   </div>
 </template>
 

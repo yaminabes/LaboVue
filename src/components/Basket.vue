@@ -38,7 +38,7 @@ export default {
   props: ['operation','name','code'],
   data : () => {
     return {
-       headers: [
+      headers: [
           { text: 'Name', value: 'name'},
           { text: 'Code', value: 'code' },
           { text: 'Mortality (%)', value: 'mortalite'},

@@ -12,6 +12,7 @@ export default new Vuex.Store({
     parts: [],
     newViruses: [],
     articles: [],
+    headers : [],
   }),
   mutations: {
     sendToLibrary(state, virus) {
@@ -110,7 +111,7 @@ export default new Vuex.Store({
           state.articles.push(i)
         }
       }
-    }
+    }, 
   },
   actions: {
   },

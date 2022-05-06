@@ -16,9 +16,9 @@ export default {
   data : () => {
     return {
       titles : [
-        { text: "Home", color:"black", path: "/home" }, 
-        { text: "Labo", color:"blue", path: "/labo" },
-        { text: "Library", color:"red", path: "/library" },
+        { text: "Home", color:"red", path: "/home", icon: "mdi-home" },
+        { text: "Labo", color:"grey", path: "/labo", icon: "mdi-cloud-upload" },
+        { text: "Library", color:"pink", path: "/library", icon: "mdi-arrow-left"},
       ],
     }
   },

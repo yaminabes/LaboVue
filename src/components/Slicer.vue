@@ -1,7 +1,12 @@
 <template>
   <div>
     <h1>Slicer</h1>
-    <CheckedList :fields="['name','code']" :entries="samples" :showChecked="true" @checked-changed="updateSelected($event)" />
+    <CheckedList :headers="headers" :entries="samples" :showChecked="true" @checked-changed="updateSelected($event)">
+      <template v-slot:entry="slotProps">          
+        <td>{{slotProps.item.name}}</td>
+        <td>{{slotProps.item.code}}</td>
+      </template>
+    </CheckedList>
     <hr/>
     <v-btn :disabled="selected.length === 0" @click="mutateSelected">Mutate</v-btn>
     <input :disabled="selected.length === 0" :value="nbMutations" @change="checkNbMutations($event.target.value)">
@@ -23,6 +28,10 @@ export default {
     selected: [], // the current selected indexes, in the checked list
     nbMutations : 5,
     cutSize : 3,
+    headers: [
+          { text: 'Name', value: 'name'},
+          { text: 'Code', value: 'code' },
+        ]
   }),
   computed: {
     ...mapState(['samples', 'collec'])

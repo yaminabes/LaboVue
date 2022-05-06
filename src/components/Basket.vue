@@ -1,9 +1,6 @@
 <template>
   <div>
     <h2>In my basket :</h2>
-    <table >
-      <tr><td>Name</td><td>Code</td><td>% Mortality</td></tr>
-      <tr>
         <CheckedList :fields="['name','code']" 
         :showEntryButton="true" 
         :showMainButton="true" 
@@ -13,19 +10,17 @@
         @list-clicked="emptyAllBasket"
         >
           <template v-slot:entry="slotProps">          
-          <td>{{slotProps.item.name}}</td>
-          <td>{{slotProps.item.code}}</td>
-          <td>{{slotProps.item.mortalite}}</td>
-        </template>
-        <template v-slot:entryButton>
-          Remove
-        </template>
-        <template v-slot:mainButton>
-          empty basket
-        </template>
+            <td>{{slotProps.item.name}}</td>
+            <td>{{slotProps.item.code}}</td>
+            <td>{{slotProps.item.mortalite}}</td>
+          </template>
+          <template v-slot:entryButton>
+            Remove
+          </template>
+          <template v-slot:mainButton>
+            empty basket
+          </template>
         </CheckedList>
-      </tr>
-    </table>
     <v-btn :disabled="basket.length === 0" @click="sendBasketToLab">Send basket to Lab</v-btn>
   </div>
 </template>
@@ -44,11 +39,7 @@ export default {
   data : () => {
     return {
        headers: [
-          //{ text: 'Select'},
-          {
-            text: 'Name', value: 'name',
-          },
-          // this replaces the scoped-slot of the entries as we can choose to give the v-dataTable what informations we need
+          { text: 'Name', value: 'name'},
           { text: 'Code', value: 'code' },
           { text: 'Mortality (%)', value: 'mortalite'},
           { text: 'action', value: '' },

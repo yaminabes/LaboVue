@@ -1,12 +1,22 @@
 <template>
   <div>
     <h1>Mixer</h1>
-    <CheckedList :fields="['name','code']" :entries="parts" @checked-changed="updateSelectedParts($event)" :showChecked="true"  />
+    <CheckedList :headers="headers"  :entries="parts" @checked-changed="updateSelectedParts($event)" :showChecked="true" >
+      <template v-slot:entry="slotProps">          
+        <td>{{slotProps.item.name}}</td>
+        <td>{{slotProps.item.code}}</td>
+      </template>
+    </CheckedList>
     <hr/>
     <v-btn :disabled="selectedParts.length === 0" @click="mixSelected">Mix</v-btn>
     <v-btn :disabled="parts.length === 0" @click="wipeParts">Wipe</v-btn>
     <hr />
-    <CheckedList :fields="['name','code']" :entries="newViruses" @checked-changed="updateSelectedNew($event)" :showChecked="true"  />
+    <CheckedList :headers="headers" :entries="newViruses" @checked-changed="updateSelectedNew($event)" :showChecked="true">
+      <template v-slot:entry="slotProps">          
+        <td>{{slotProps.item.name}}</td>
+        <td>{{slotProps.item.code}}</td>
+      </template>
+    </CheckedList>
     <v-btn :disabled="selectedNew.length === 0" @click="sendToLibrary">Send to library</v-btn>
     <v-btn :disabled="selectedNew.length === 0" @click="sendToLab">Send to lab</v-btn>
     <v-btn :disabled="newViruses.length === 0" @click="removeViruses">Remove all</v-btn>
@@ -26,6 +36,10 @@ export default {
   data: () => ({
     selectedParts: [], // the current selected indexes, in the checked list
     selectedNew: [], // the current selected indexes, in the checked list
+    headers: [
+          { text: 'Name', value: 'name'},
+          { text: 'Code', value: 'code' },
+        ]
   }),
   computed: {
     ...mapState(['parts','newViruses'])

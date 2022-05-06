@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-app>
     <!-- <table>
       <tr v-for="(entry,index) in entries" :key="index">
         <td>
@@ -32,7 +33,7 @@
         <v-text-field
           v-model="search"
           label="Search by name"
-          class="mx-4"
+          class="mx-6"
           outlined
         ></v-text-field>
 
@@ -40,9 +41,8 @@
 
       <template v-slot:item="row">
         <tr>
-          <td>
-            <input
-              v-if="showChecked"
+          <td v-if="showChecked" >
+            <input              
               type="checkbox"
               :id="row.index"
               :value="row.index"
@@ -68,12 +68,14 @@
         <v-btn
           v-if="showMainButton"
           @click="$emit('list-clicked'), updateChecked()"
+          color="success"
         >
           <slot name="mainButton"> Main button </slot>
         </v-btn>
       </template>
       
     </v-data-table>
+  </v-app>
   </div>
 </template>
 

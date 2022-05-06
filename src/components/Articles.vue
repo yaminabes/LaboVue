@@ -45,11 +45,7 @@ export default {
     selected: [], // the current selected indexes, in the checked list
     headers: [
           //{ text: 'Select'},
-          {
-            text: 'Name',
-            align: 'start',
-            value: 'name',
-          },
+          { text: 'Name', value: 'name' },
           // this replaces the scoped-slot of the entries as we can choose to give the v-dataTable what informations we need
           { text: 'Code', value: 'code' },
           { text: 'Mortality (%)', value: 'mortalite'},

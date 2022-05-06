@@ -57,6 +57,7 @@
             <v-btn
               v-if="showEntryButton"
               @click="$emit('entry-clicked', row.index)"
+              :color="entryColor"
             >
               <slot name="entryButton"> Entry Button </slot>
             </v-btn>
@@ -68,7 +69,7 @@
         <v-btn
           v-if="showMainButton"
           @click="$emit('list-clicked'), updateChecked()"
-          color="success"
+          :color="mainColor"
         >
           <slot name="mainButton"> Main button </slot>
         </v-btn>
@@ -89,6 +90,8 @@ export default {
     "showMainButton",
     "fields",
     "headers",
+    "entryColor",
+    "mainColor",
   ],
   data: () => {
     return {

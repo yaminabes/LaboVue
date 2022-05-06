@@ -7,15 +7,15 @@
       dark
       app
       >
+      <virus></virus>
         <NavBar v-bind:titles="titles"></NavBar>
       </v-app-bar>
       <v-card flat 
-        color="primary"
         class="padding-top-bottom-20"
       > 
         <router-view name="locCentral"></router-view>
       </v-card>
-    </v-container>
+      </v-container>
     </v-row>
     </v-app>
   </div>
@@ -23,6 +23,7 @@
 
 <script>
 import NavBar from './components/NavBar.vue'
+import Virus from './components/Virus.vue'
 
 
 export default {
@@ -38,6 +39,7 @@ export default {
   },
   components: {
     NavBar,
+    Virus,
   }
 }
 </script>
@@ -49,6 +51,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 60px;
+
+  background-image: 
+  linear-gradient(transparent 11px,
+    rgba(220,220,200,.8) 12px,
+    transparent 12px),
+  linear-gradient(90deg,
+    transparent 11px,
+    rgba(220,220,200,.8) 12px,
+    transparent 12px);
+  background-size: 100% 12px, 12px 100%;
   
 }
 </style>

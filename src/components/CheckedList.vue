@@ -18,14 +18,14 @@
       </tr>
     </table> -->
     <v-data-table
-      v-model="selected"
+      v-model="chosenEntries"
       :headers="headers"
       :items="entries"
-      :single-select="singleSelect"
       :search="search"
+      every-item
       :custom-filter="filterByName"
-      :show-select="showChecked"
-      item-key="name"
+      :show-select="showChecked"      
+      item-key="id"
       class="elevation-1"
     >
       <template v-slot:top>

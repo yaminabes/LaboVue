@@ -16,6 +16,9 @@
             <td>{{slotProps.item.code}}</td>
             <td>{{slotProps.item.mortalite}}</td>
           </template>
+          <template v-slot:tooltip="slotProps">
+            Remove {{ slotProps.item.name }} from basket
+          </template>
           <template v-slot:entryButton>
             Remove
           </template>

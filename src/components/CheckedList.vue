@@ -64,7 +64,12 @@
                   <slot name="entryButton"> Entry Button </slot>
                 </v-btn>
               </template>
-              <span>Add {{ row.item.name }} to the basket</span>
+              <span>
+                <slot name="tooltip" v-bind:item="row.item">
+                  {{ row.item }}
+                </slot>
+                
+              </span>
             </v-tooltip>
           </td>
         </tr>

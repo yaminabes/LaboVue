@@ -19,6 +19,9 @@
         <td>{{ slotProps.item.mortalite }}</td>
         <td>{{ slotProps.item.temperature }}</td>
       </template>
+      <template v-slot:tooltip="slotProps">
+        Add {{ slotProps.item.name }} to basket
+      </template>
       <template v-slot:entryButton> To Basket </template>
       <template v-slot:mainButton> Send selected to Basket </template>
     </CheckedList>

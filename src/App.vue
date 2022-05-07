@@ -8,13 +8,16 @@
       app
       >
       <virus></virus>
+      <v-banner color="#ff5555">I need new Friends, <b style="colorblack">click me</b> to know what you have in your lab !</v-banner>
         <NavBar v-bind:titles="titles"></NavBar>
+      
       </v-app-bar>
       <v-card flat 
         class="padding-top-bottom-20"
       > 
         <router-view name="locCentral"></router-view>
       </v-card>
+      
       </v-container>
     </v-row>
     </v-app>

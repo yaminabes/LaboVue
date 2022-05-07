@@ -10,6 +10,7 @@
       viewBox="0 0 200 200"
       enable-background="new 0 0 200 200"
       xml:space="preserve"
+      @click="showHideDialog"
     >
       <g id="body">
         <g class="evelope">
@@ -847,13 +848,34 @@
         </g>
       </g>
     </svg>
+    
 
     <div class="shadow"></div>
+    
+  <Dialogue v-if="show" />
   </div>
 </template>
 
 <script>
-export default {};
+import Dialogue from './Dialogue.vue';
+export default {
+    data: () => ({
+        show: false,
+    }),
+    components: {
+        Dialogue
+    },
+    methods :{
+        showHideDialog(){
+            if(this.show){
+                this.show = false
+            }
+            else{
+                this.show = true
+            }
+        }
+    }
+};
 </script>
 
 <style lang="scss" scoped>

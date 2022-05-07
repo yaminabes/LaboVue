@@ -21,10 +21,14 @@
       </v-container>
     </v-row>
     </v-app>
+    <div id="footer">
+    <Footer/>
+    </div>
   </div>
 </template>
 
 <script>
+import Footer from './components/Footer.vue'
 import NavBar from './components/NavBar.vue'
 import Virus from './components/Virus.vue'
 
@@ -43,6 +47,7 @@ export default {
   components: {
     NavBar,
     Virus,
+    Footer,
   }
 }
 </script>
@@ -65,5 +70,17 @@ export default {
     transparent 12px);
   background-size: 100% 12px, 12px 100%;
   
+}
+.footer {
+  text-align: center;
+  font-size: 1.2em;
+  color: #1c6ab7;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
 </style>

@@ -10,7 +10,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   name: 'Home'
@@ -18,4 +17,27 @@ export default {
 </script>
 
 <style scoped>
+#home {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #1c6ab7;
+  margin-top: 60px;
+}
+h1 {
+  font-size: 4em;
+  text-align: center;
+}
+p {
+  font-size: 2em;
+  text-align: center;
+  padding: auto;
+  margin: auto;
+}
+.card {
+  background-color: #edc3c3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
 </style>

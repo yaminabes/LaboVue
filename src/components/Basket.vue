@@ -6,6 +6,8 @@
         :showMainButton="true" 
         :entries="basketFunction"
         :headers="headers"
+        :entryColor="'red'"
+        :mainColor="'grey'"
         @entry-clicked="remove($event)"
         @list-clicked="emptyAllBasket"
         >
@@ -21,7 +23,7 @@
             empty basket
           </template>
         </CheckedList>
-    <v-btn :disabled="basket.length === 0" @click="sendBasketToLab">Send basket to Lab</v-btn>
+    <v-btn :disabled="basket.length === 0" @click="sendBasketToLab" color="green" >Send basket to Lab</v-btn>
   </div>
 </template>
 
@@ -35,7 +37,7 @@ export default {
   components: {
     CheckedList,
   },
-  props: ['operation','name','code'],
+  props: ['operation','name','code', 'entryColor', 'mainColor'],
   data : () => {
     return {
       headers: [
@@ -43,7 +45,8 @@ export default {
           { text: 'Code', value: 'code' },
           { text: 'Mortality (%)', value: 'mortalite'},
           { text: 'action', value: '' },
-        ]
+        ],
+
     }
   },
   computed: {

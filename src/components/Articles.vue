@@ -8,7 +8,7 @@
       :entries="articlesFunction"
       :headers="headers"
       :entryColor="'primary'"
-      :mainColor="'cyan'"
+      :mainColor="'green'"
       @entry-clicked="sendOneToBasket($event)"
       @list-clicked="sendSelectedToBasket($event)"
       @checked-changed="updateSelected($event)"

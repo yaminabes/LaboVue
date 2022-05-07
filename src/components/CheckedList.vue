@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <!-- <table>
       <tr v-for="(entry,index) in entries" :key="index">
         <td>
@@ -36,13 +35,12 @@
           class="mx-6"
           outlined
         ></v-text-field>
-
       </template>
 
       <template v-slot:item="row">
         <tr>
-          <td v-if="showChecked" >
-            <input              
+          <td v-if="showChecked">
+            <input
               type="checkbox"
               :id="row.index"
               :value="row.index"
@@ -54,13 +52,20 @@
             {{ row.item }}
           </slot>
           <td>
-            <v-btn
-              v-if="showEntryButton"
-              @click="$emit('entry-clicked', row.index)"
-              :color="entryColor"
-            >
-              <slot name="entryButton"> Entry Button </slot>
-            </v-btn>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  v-if="showEntryButton"
+                  @click="$emit('entry-clicked', row.index)"
+                  :color="entryColor"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  <slot name="entryButton"> Entry Button </slot>
+                </v-btn>
+              </template>
+              <span>Add {{ row.item.name }} to the basket</span>
+            </v-tooltip>
           </td>
         </tr>
       </template>
@@ -74,7 +79,6 @@
           <slot name="mainButton"> Main button </slot>
         </v-btn>
       </template>
-      
     </v-data-table>
   </div>
 </template>
@@ -99,19 +103,21 @@ export default {
       chosenEntries: [],
       mainClick: false,
       selected: [],
-      search: '',
+      search: "",
     };
   },
   methods: {
     updateChecked() {
       this.chosenEntries = [];
     },
-    filterByName (value, search) {
-        return value !== null &&
-          search !== null &&
-          typeof value === 'string' &&
-          value.toString().indexOf(search) !== -1
-      },
+    filterByName(value, search) {
+      return (
+        value !== null &&
+        search !== null &&
+        typeof value === "string" &&
+        value.toString().indexOf(search) !== -1
+      );
+    },
   },
 };
 </script>
